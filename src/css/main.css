@@ -503,3 +503,36 @@ div.page_content {
 .dropdown-menu .dropdown-item {
   padding: 12px 0 12px 30px !important;
 }
+
+.dropdown-text {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.empty_savings_page {
+  width: 100%;
+  height: calc(70vh - 102px);
+  /* background-color: #01733D; */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty_savings_page_texts {
+  width: 100%;
+  text-align: center;
+}
+
+.empty_savings_page_texts h2 {
+  font-size: 25px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.empty_savings_page_texts p {
+  font-size: 14px;
+  line-height: 173.3%;
+  color: #919AA3;
+  padding: 40px 0 !important;
+}
