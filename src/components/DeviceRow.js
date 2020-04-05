@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
+import datetime from 'node-datetime';
 import deleteGatewayDevice from '../actions/deleteDevice';
 
 /**
@@ -33,7 +34,9 @@ class DeviceRow extends Component {
           <td>{device.vendor}</td>
           <td>{device.uid}</td>
           <td>{device.status}</td>
-          <td>{device.createdAt}</td>
+          <td>
+            { datetime.create(device.createdAt).format('m/d/y') }
+          </td>
           <td>
             <Button
               variant="danger"

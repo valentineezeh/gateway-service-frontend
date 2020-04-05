@@ -8,14 +8,26 @@ import Loader from 'react-loader-spinner';
 import GatewayList from './GatewayList';
 import getGateways from '../actions/getGateways';
 import EmptyPage from './EmptyPage';
+import Paginate from './pagination';
 
 /**
  * @class Gateway
  */
 class LandingPage extends Component {
+  state = {
+    currentPage: 1,
+    postPerPage: 10,
+  }
+
+  // Get all gateways
   componentDidMount = () => {
     const { GetGateways } = this.props;
     GetGateways();
+  }
+
+  // Change page
+  paginate = (pageNumber) => {
+    this.setState({ currentPage: pageNumber });
   }
 
   /**
@@ -27,6 +39,13 @@ class LandingPage extends Component {
       gateWayPayload,
       gatewayIsLoading
     } = this.props;
+
+    // Get current page
+    const { currentPage, postPerPage } = this.state;
+    const indexOfLastPost = currentPage * postPerPage;
+    const indexOfFirstPost = indexOfLastPost - postPerPage;
+    const currentPosts = gateWayPayload.allGateways.slice(indexOfFirstPost, indexOfLastPost);
+
     return (
       <div>
         <div className="dashboard_body px-5">
@@ -93,13 +112,23 @@ class LandingPage extends Component {
                 <div className="accordion my-2 w-100" id="accordionExample">
                   {
             // eslint-disable-next-line react/prop-types
-            gateWayPayload.allGateways.map(gateway => (
+            currentPosts.map(gateway => (
               <GatewayList
                 key={gateway._id}
                 gateWayPayload={gateway}
               />
             ))
           }
+                </div>
+
+                <div className="container-fluid">
+                  <div className="row align-items-center">
+                    <Paginate
+                      postPerPage={postPerPage}
+                      totalPosts={gateWayPayload.allGateways.length}
+                      paginate={this.paginate}
+                    />
+                  </div>
                 </div>
               </>
             )

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 /**
  * @class Navigation
@@ -28,15 +28,23 @@ export default class Navigation extends Component {
           <div className="side_links">
             <ul>
               <li>
-                <Link to="/">
+                <NavLink
+                  exact
+                  to="/"
+                  activeClassName="active"
+                >
                   Gateways
-                </Link>
+                </NavLink>
 
               </li>
               <li>
-                <Link to="/create-gateway">
+                <NavLink
+                  exact
+                  to="/create-gateway"
+                  activeClassName="active"
+                >
                   Create Gateway
-                </Link>
+                </NavLink>
 
               </li>
             </ul>
